@@ -63,7 +63,7 @@ def all_supplies_in_holidays(holiday_hash)
   # Summer:
   #   Fourth Of July: Fireworks, BBQ
   # etc.
-  print_list = ""
+ 
   holiday_hash.each do |season, hol_name_and_supply_hash|
     puts "#{season.to_s.capitalize}:"
     hol_name_and_supply_hash.each do |holiday, supplies|
@@ -87,10 +87,15 @@ def all_holidays_with_bbq(holiday_hash)
 #  bbq_holidays
 
 # refactoring
-  holiday_hash.map do |season, hol_name_and_supply_hash|
+
+  variable = holiday_hash.map do |season, hol_name_and_supply_hash|
     hol_name_and_supply_hash.map do |holiday, supplies|
       holiday if supplies.include?("BBQ")
     end
-  end.flatten.compact
+  end #.flatten.compact
+  binding.pry
+
+# flatten being called on return value of iterator. chaining on "end" is on return value of the loop
+#why can we chain methods to "end" here?
 
 end
