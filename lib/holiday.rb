@@ -41,18 +41,12 @@ def add_supply_to_memorial_day(holiday_hash, supply)
 end
 
 def add_new_holiday_with_supplies(holiday_hash, season, holiday_name, supply_array)
-  # code here
-  # remember to return the updated hash
   holiday_hash[season][holiday_name] = supply_array
 end
 
 def all_winter_holiday_supplies(holiday_hash)
   # return an array of all of the supplies that are used in the winter season
-  winter_supplies = []
-  holiday_hash[:winter].each do |holiday, supplies|
-    winter_supplies << supplies
-  end
-  winter_supplies.flatten
+  holiday_hash[:winter].values.flatten
 end
 
 def all_supplies_in_holidays(holiday_hash)
@@ -63,7 +57,7 @@ def all_supplies_in_holidays(holiday_hash)
   # Summer:
   #   Fourth Of July: Fireworks, BBQ
   # etc.
-  print_list = ""
+ 
   holiday_hash.each do |season, hol_name_and_supply_hash|
     puts "#{season.to_s.capitalize}:"
     hol_name_and_supply_hash.each do |holiday, supplies|
@@ -87,10 +81,15 @@ def all_holidays_with_bbq(holiday_hash)
 #  bbq_holidays
 
 # refactoring
-  holiday_hash.map do |season, hol_name_and_supply_hash|
+
+  variable = holiday_hash.map do |season, hol_name_and_supply_hash|
     hol_name_and_supply_hash.map do |holiday, supplies|
       holiday if supplies.include?("BBQ")
     end
-  end.flatten.compact
+  end #.flatten.compact
+  binding.pry
+
+# flatten being called on return value of iterator. chaining on "end" is on return value of the loop
+#why can we chain methods to "end" here?
 
 end
